@@ -1,0 +1,22 @@
+[
+    {
+      "notification": "Introduction",
+      "notificationNumber": 0
+    },
+    {
+      "notification": "Alert",
+      "notificationNumber": 1
+    },
+    {
+      "notification": "Remainder",
+      "notificationNumber": 2
+    },
+    {
+      "notification": "Warning",
+      "notificationNumber": 3
+    },
+    {
+      "notification": "Hardblock",
+      "notificationNumber": 4
+    }
+  ]

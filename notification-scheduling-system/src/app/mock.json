@@ -1,0 +1,25 @@
+
+[
+    {
+    "id": 1,
+    "name": "Elegance Hair Gel",
+    "description": "Strong hold hair gel.",
+    "price": 9.99,
+    "stock": 10567
+    },
+    {
+    "id": 2,
+    "name": "Elegance Hair Serum",
+    "description": "Hair serum with vitamins.",
+    "price": 14.99,
+    "stock": 9956
+    },
+    {
+    "id": 3,
+    "name": "Elegance Hair Shampoo",
+    "description": "Hair Shampoo with Aloe Vera.",
+    "price": 7.99,
+    "stock": 5689
+    }
+   ]
+   

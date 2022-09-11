@@ -1,0 +1,50 @@
+<section>
+    <div class="d-flex flex-column">
+        <div class="w-100">
+            <label>Select Market</label>
+            <select class="form-select select-market" name="selectMarket" [(ngModel)]="selectedMarket">
+                <option *ngFor="let market of marketsArr" [value]="market">
+                    {{market}}
+                </option>
+            </select>
+        </div>
+        <div class="company-type w-100">
+            <label>Select Company Type</label>
+            <select class="form-control select-company-type" name="selectCompanyType" [(ngModel)]="selectedCompanyType">
+                <option *ngFor="let companyType of companyTypeArr" [value]="companyType">
+                    {{companyType}}
+                </option>
+            </select>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="getNotificationDetails()">Submit</button>
+    </div>
+    <p *ngIf="!noDataAvailable && notificationDetails.length!=0" class="hard-block-text">Days to hardblock note: {{daysToHardblock}}</p>
+    <div class="container-fluid d-flex flex-row w-100 mt-4" *ngIf="!noDataAvailable">
+        <div class="d-flex flex-column w-100" *ngFor="let notification of notificationDetails">
+            <div class="d-flex flex-row align-items-center">
+                <fa-icon class="icon-size-completed" *ngIf="notification.completion > 0; else elseBlock"
+                    [icon]="faCircleCheck"></fa-icon>
+                <ng-template #elseBlock>
+                    <fa-icon class="icon-size-incomplete"
+                        [ngClass]="{calendarIconMargin: notification.numberOfDays == -1}" [icon]="faCalendar"></fa-icon>
+                </ng-template>
+                <div *ngIf="notification.numberOfDays != -1" class="completion-progress w-100">
+                    <div class="progress-text text-center">{{notification.numberOfDays}} d.</div>
+                    <div class="progress w-100">
+                        <div class="progress-bar" role="progressbar" *ngIf="notification.label != 'Hardblock'"
+                            style="width:{{notification.completion}}%" aria-valuenow="notification.completion"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-label d-flex flex-row align-items-center">
+                {{notification.label}}
+                <fa-icon class="icon-size-incomplete fa-info" [icon]="faInfo"></fa-icon>
+            </div>
+            <div>
+                {{notification.date}}
+            </div>
+        </div>
+    </div>
+    <div class="no-data" *ngIf="noDataAvailable">No data available </div>
+</section>
