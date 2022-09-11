@@ -1,16 +1,14 @@
 import { DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import {
-  HttpClientTestingModule,
-} from "@angular/common/http/testing";
-import { NotificationService } from '../notification.service';
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
+import { NotificationService } from '../notification.service';
 import { HardblockNotificationComponent } from './hardblock-notification.component';
 import { INotificationMapper, INotificationResponse } from '../interfaces';
-import mapperData from "../../assets/mapperData.json";
-import notificationDates from "./mockData/notificationDates.json";
+import mapperData from "../../assets/mockData/mapperData.json";
+import notificationDates from "../../assets/mockData/notificationDates.json";
 
 const NotificationServiceMock:INotificationResponse = notificationDates; 
 const mapper : Array<INotificationMapper>= mapperData;
@@ -37,9 +35,7 @@ describe('HardblockNotificationComponent', () => {
       });
   });
 
-  beforeEach(() => {
-
-  });
+  beforeEach(() => {});
 
   it('should create HardBlockNotification Component', () => {
     expect(component).toBeTruthy();
@@ -99,22 +95,5 @@ describe('HardblockNotificationComponent', () => {
     component.notificationsDatesArr = NotificationServiceMock.notifications;
     component.setNotification(mapper);
     expect(component.notificationDetails[0].completion).toBeGreaterThan(0);
-  });
-
-  it('should throw an error when 404', () => {
-    const errorResponse = new HttpErrorResponse({
-      error: '404 error',
-      status: 404,
-      statusText: 'Not Found'
-    });
-
-    httpClientSpy.get.and.returnValue(asyncError(errorResponse));
-
-    service.getComments().subscribe(
-      data => fail('Should have failed with 404 error'),
-      (error: HttpErrorResponse) => {
-        expect(error.status).toEqual(404);
-        expect(error.error).toContain('404 error');
-      });
   });
 });

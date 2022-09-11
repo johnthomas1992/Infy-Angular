@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { INotificationMapper } from './interfaces';
-import mapperData from '../assets/mapperData.json';
+import mapperData from '../assets/mockData/mapperData.json';
+import { CONSTANTS } from 'src/assets/constants';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +20,7 @@ export class NotificationService {
       "Country": market,
       "Type": companyType
     };
-    return this.httpClient.post("https://5vlquaf0qc.execute-api.ap-south-1.amazonaws.com/mock-stage/mock-data", body)
+    return this.httpClient.post(CONSTANTS.AWS_API, body)
   }
 
 }
